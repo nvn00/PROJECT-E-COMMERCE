@@ -1,0 +1,86 @@
+
+<section>
+        <div class="container mt-5">
+           
+                <table class="table mt-5">
+                    <thead>
+                                {{!-- <tr>
+                                    <th scope="col">ITEM</th>
+                                    <th scope="col">TITLE</th>
+                                    <th scope="col">QUANTITY</th>
+                                    <th scope="col">PRICE</th>
+                                    <th scope="col">REMOVE</th>
+                                    
+                                </tr> --}}
+                    </thead>
+                    <tbody > 
+                        {{#each products}}
+                        
+                            <tr>
+                                    <td><img  src="/product-images/{{this.product._id}}.jpg" alt="" srcset="" style="width:70px;height:70px" class="deleteProduct"></td>
+                                    <td >{{this.product.Name}}</td>
+                               
+                                   <td><button class="cart-item-count mr-3 " onclick="changeQuantity('{{this._id}}','{{this.product._id}}','decrement','{{this.quantity}}')">-</button><span 
+                                   id="{{this.product._id}}-qty">{{this.quantity}}</span><button class="cart-item-count ml-3" 
+                                   onclick="changeQuantity('{{this._id}}','{{this.product._id}}','increment')">+</button></td>
+
+
+                                     <td >{{this.product.Price}}</td>
+                               
+                                    <td>
+                                        <button class="btn btn-danger " onclick="clearProduct()"> REMOVE </button>
+                                        
+                                    </td>
+                                   
+                                   
+                               
+                            </tr>
+                        {{/each}}
+                        
+                        
+                    </tbody> 
+                   
+                </table> 
+                 <hr>   
+                 <h6 style="margin-left: 847px"><span id="total">TOTAL : {{totalValue}}</span> </h6>
+                 <a href="/place-order" class="btn btn-primary float-right" style="margin-right: 142px">PLACE ORDER</a>
+            
+        </div>
+</section>
+
+<script>
+     
+    function changeQuantity(cartId,proId,type){
+         let qty = document.getElementById(proId + '-qty')
+
+        if(parseInt(qty.innerHTML)<=0 && type=='decrement'){
+           
+            return
+        }
+        $.ajax({
+            url:'/change-product-quantity',
+            data:{
+                cart:cartId,
+                product:proId,
+                type:type
+            },
+            method:'post',
+            success:(response ) => {
+              
+              let qty = document.getElementById(proId + '-qty')
+             
+              qty.innerHTML = parseInt(qty.innerHTML) + (type === 'increment' ? 1 : -1)
+
+              
+              
+            },
+            error:()=>{
+                alert('hai')
+            }
+        })
+    }
+
+
+
+
+</script>

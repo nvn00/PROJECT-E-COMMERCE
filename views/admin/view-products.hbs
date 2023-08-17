@@ -1,0 +1,44 @@
+<section>
+  <div class="container">
+    <a href="/admin/add-products" class="btn btn-success " style="margin-left: 944px;margin-top:10px">ADD PRODUCTS</a>
+      
+     
+      <table class="table mt-3" id="admin-products-table" >
+       <div class="row" style="margin-top: 20px;">
+      
+        <thead >
+          <tr>
+            <th scope="col">NO</th>
+            <th scope="col">NAME</th>
+            <th scope="col">CATEGORY</th>
+            <th scope="col">DESCRPTION</th>
+            <th scope="col">PRICE</th>
+            <th>IMAGE</th>
+            <th scope="col">EDIT</th>
+            <th scope="col">DELETE</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          {{#each products}}
+            <tr>
+            <th scope="row">1</th>
+            <td>{{this.Name}}</td>
+            <td>{{this.Category}}</td>
+            <td>{{this.Descrption}}</td>
+            <td>{{this.Price}}</td>
+            <td><img style="width:50px;height:50px"src="/product-images/{{this._id}}.jpg" alt=""></td>
+            <td><a  href="/admin/edit-product/{{this._id}}" class="btn btn-dark">EDIT</a></td>
+            <td><a  href="/admin/delete-product?id={{this._id}}" class="btn btn-danger" onclick="return confirm('are you want to delete {{this.Name}} ?')">DELETE</a></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<script>
+  $( function () {
+    $('#admin-products-table').DataTable();
+} );
+</script>

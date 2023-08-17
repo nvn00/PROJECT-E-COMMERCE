@@ -1,0 +1,56 @@
+<header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">SPORTS CART </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         
+
+
+  
+      
+ 
+     
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Products <span class="sr-only">(current)</span></a>
+      </li>
+       <form class="form-inline my-2 my-lg-0" style="margin-right: 37px;">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width:720px">
+      <button class="btn  my-2 my-sm-0" type="submit">🔍</button>
+    </form>
+        <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{#if user}}
+      {{user.Name}}
+    {{else}}
+      ACCOUNT
+    {{/if}}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+     {{#if user}}
+      <a class="dropdown-item" href="/logout">LOGOUT</a>
+    {{else}}
+       <a class="dropdown-item" href="/login">LOGIN</a>
+    {{/if}} 
+  </div>
+</div>
+      <li class="nav-item">
+        <a class="nav-link " href="/cart">Cart🛒 <span class="badge  badge-dark" id="cart-count">{{this.cartCount}}</span></a>
+        
+      </li>
+     
+      <li class="nav-item">
+        {{#if user}}
+           <a class="nav-link" href="/orders">orderd</a>
+        {{/if}}
+      </li>
+    </ul>
+  
+    
+
+
+</nav>
+</header>
