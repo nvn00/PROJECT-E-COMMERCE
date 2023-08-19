@@ -8,8 +8,10 @@ module.exports.connect=function(done){
         mongoClient.connect(url).then((data)=>{
             state.db=data.db(dbname)
             done()
+            console.log("db connected")
         }).catch((err) => {
             done(err)
+            console.log("db error")
          })
 
    
