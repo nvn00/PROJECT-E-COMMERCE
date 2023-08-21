@@ -46,7 +46,8 @@ router.post('/signup',(req,res)=>{
    // console.log(req.body)
     //console.log(response)
     req.session.user=response.user
-    req.session.user.loggedIn=true
+    //req.session.user.loggedIn=true
+    req.session.userLoggedIn=true
     res.redirect('/')
 
   })
@@ -60,6 +61,7 @@ router.post('/login',(req,res)=>{
       
       req.session.user=response.user
       req.session.user.loggedIn=true
+      req.session.userLoggedIn=true
       res.redirect('/')
     }else{
       req.session.userLoginErr="invalid username or password"
